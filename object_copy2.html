@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {
+            name :'철수',
+            address : '서울',
+            hobby:{
+                a:'game',
+                b:'music',
+            },
+        }
+
+        // const newObj = JSON.stringify(obj); -> JSON 형태의 문자열로 바뀜. 텍스트로 인식
+        const newObj = JSON.parse(JSON.stringify(obj)); // 다시 오브젝트 형태로 바뀜 
+        newObj.hobby.a = 'book';
+        console.log(newObj)
+        console.log(obj)
+        //함수(메소드)가 있으면 카피가 되지 않음(undefined가 출력됨). 자료형인 오브젝트일 경우에만 사용 가능.
+        //방대한 자료가 있을 때는 잘 사용하지 않음. 그럴 때는 라이버리나 모듈을 사용함.
+
+    </script>
+</body>
+</html>

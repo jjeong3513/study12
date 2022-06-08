@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       /*
+       let a =10;
+        let b =a;
+        a = 30;
+        console.log(a) //30 -> a는 값이 있는 주소를 참조하는 것 (얕은 카피)
+        console.log(b) //10 -> b는 주소에 가서 값을 가져오는 것 (딥카피)
+        */
+       let a ={value:1}
+       let newA = a ;
+       newA.value = 2;
+       console.log(a.value) //2 
+       console.log(newA.value) //2 -> newA는 주소를 찾아오는 애임.
+       console.log(a === newA) // true -> 오브젝트는 참조타입이고 참조타입은 얕은카피를 하기 때문임.
+
+       /*
+        딥카피를 하는 방법: 메소드, 스프레드 연산자를 사용
+         Object.assign() -> 메소드
+         ...-> 스프레드 연산자. 1depth까지 밖에 딥카피가 되지 않음.
+        라이브 모듈을 사용하면 2depth 이상까지 딥카피 가능. */
+
+        const obj = {num:1}
+        const newObj = Object.assign({},obj) // 메소드를 사용하면 딥카피가 되지만 완벽한 딥카피는 아님.
+        newObj.num = 10;
+        console.log(obj) // num:1
+        console.log(newObj) // num:10
+        console.log(obj===newObj) // flase
+        //target : 목표객체. 출처 객체의 속성을 복사해 반영한 후 반환할 객체
+
+
+        const user = {
+            name:'철수',
+            hobby:{
+                a:'game',
+                b:'music',
+            },
+        }
+        const newUser = Object.assign({},user); // 1depth까지만 카피함.
+        newUser.hobby.a = 'book'; // 여기까지만 카피
+        newUser.name = '영희'; 
+
+        console.log(user); // 철수, book
+        console.log(newUser); // 영희, book
+        console.log(user===newUser);//false
+
+
+        const item = {
+            type:101,
+            color:{
+                a:'red',
+                b:'blue',
+            },
+        };
+        const newItem = {...item}; // assign과 같은 역할을 함. 1depth까지만 카피함.
+        newItem.type = 202;
+        newItem.color.a = 'green';
+        console.log(item) // type:101, color.a = green
+        console.log(newItem) //type:202, color.a = green
+
+        
+        // 중첩구조일때 사용 -> JSON이라는 자료의 형태로 보내줌-> JSON은 오브젝트랑 똑같은 자료형태를 띄고 있는데, 키값에 따옴표를 넣어줘야함.
+        // 이걸 사용하면 완벽한 딥카피를 할 수 있음.
+        JSON.stringify() // 제이슨에서 받은 객체들을 문자로 전환
+        JSON.parse() // 그 문자를 객체(오브젝트)로 전환
+
+    </script>
+</body>
+</html>
