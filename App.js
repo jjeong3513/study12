@@ -1,7 +1,7 @@
 
 import './App.css';
 import Header from './components/Header/Header';
-import MainFeed from './components/MainFeed/MainFeed';
+import MainFeed from './components/MainFeed/MainFeed.jsx';
 
 function App() {
   return (
